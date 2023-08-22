@@ -2,7 +2,7 @@
 ## Union vs. Union All
 - ```UNION```: This operator combines the result sets of two or more SELECT statements and removes duplicate rows from the final result.
 - ```UNION ALL```: This operator also combines the result sets of SELECT statements but retains all rows, including duplicates, in the final result.
-- 
+  
 ### Rules of Union
 - Each SELECT statement within a UNION or UNION ALL must have the same number of columns.
 - The columns must also have similar data types.
