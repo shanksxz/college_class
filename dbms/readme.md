@@ -19,17 +19,16 @@
 
 ### Data Independence
 - Data independence refers characteristic of being able to modify the schema at one level of the database system without altering the schema at the next higher level.
-
-#### Logical Data Independence
-- Logical data independence refers characteristic of being able to change the conceptual schema without having to change the external schema.
-- Logical data independence is used to separate the external level from the conceptual view.
-If we do any changes in the conceptual view of the data, then the user view of the data would not be affected.
-Logical data independence occurs at the user interface level.
-#### Physical Data Independence
-- Physical data independence can be defined as the capacity to change the internal schema without having to change the conceptual schema.
-- If we do any changes in the storage size of the database system server, then the Conceptual structure of the database will not be affected.
-- Physical data independence is used to separate conceptual levels from the internal levels.
-- Physical data independence occurs at the logical interface level.
+    #### Logical Data Independence
+    - Logical data independence refers characteristic of being able to change the conceptual schema without having to change the external schema.
+    - Logical data independence is used to separate the external level from the conceptual view.
+    If we do any changes in the conceptual view of the data, then the user view of the data would not be affected.
+    Logical data independence occurs at the user interface level.
+    #### Physical Data Independence
+    - Physical data independence can be defined as the capacity to change the internal schema without having to change the conceptual schema.
+    - If we do any changes in the storage size of the database system server, then the Conceptual structure of the database will not be affected.
+    - Physical data independence is used to separate conceptual levels from the internal levels.
+    - Physical data independence occurs at the logical interface level.
 
 
 ### Integrity Constraints
@@ -230,7 +229,70 @@ Logical data independence occurs at the user interface level.
         ID   →    Name,  
         Name   →    DOB 
         ```
-        > topic not compleeted
+
+
+### Normalization
+- Database normalization is the process of organizing the attributes of the database to reduce or eliminate data redundancy (having the same data but at different places). 
+- ```Problems because of data redundancy```: Data redundancy unnecessarily increases the size of the database as the same data is repeated in many places. Inconsistency problems also arise during insert, delete and update operations.
+
+    #### First Normal Form(1NF) 
+    - If a relation contain composite or multi-valued attribute, it violates first normal form or a relation is in first normal form if it does not contain any composite or multi-valued attribute. A relation is in first normal form if every attribute in that relation is singled valued attribute.
+    - Ex1 – Relation STUDENT in table 1 is not in 1NF because of multi-valued attribute STUD_PHONE. Its decomposition into 1NF has been shown in table 2.
+            ![Alt text](image.png)
+    - Ex2 - 
+        ```
+        ID   Name   Courses
+        ------------------
+        1    A      c1, c2
+        2    E      c3
+        3    M      C2, c3
+        ```
+    - In the above table Course is a multi-valued attribute so it is not in 1NF. Below Table is in 1NF as there is no multi-valued attribute
+
+        ```
+        ID   Name   Course
+        ------------------
+        1    A       c1
+        1    A       c2
+        2    E       c3
+        3    M       c2
+        3    M       c3
+        ```
+    #### Second Normal Form(2NF)
+    - In the 2NF, relational must be in 1NF.
+    - In the second normal form, all non-key attributes are fully functional dependent on the primary key
+    - Ex -Let's assume, a school can store the data of teachers and the subjects they teach. In a school, a teacher can teach more than one subject.
+
+        ![Alt text](image-1.png)
+    
+    - In the given table, non-prime attribute TEACHER_AGE is dependent on TEACHER_ID which is a proper subset of a candidate key. That's why it violates the rule for 2NF.
+    - To convert the given table into 2NF, we decompose it into two tables:
+
+        ![Alt text](image-2.png)
+
+    #### Third Normal Form(3NF)
+    - A relation will be in 3NF if it is in 2NF and not contain any transitive partial dependency.
+    - 3NF is used to reduce the data duplication. It is also used to achieve the data integrity.
+    - If there is no transitive dependency for non-prime attributes, then the relation must be in third normal form.
+    - A relation is in third normal form if it holds atleast one of the following conditions for every non-trivial function dependency X → Y.
+
+        - X is a super key.
+        - Y is a prime attribute, i.e., each element of Y is part of some candidate key.
+  
+
+            ![Alt text](image-3.png)
+
+            ![Alt text](image-4.png)
+
+    #### Boyce-Codd Normal Form (BCNF)
+    - BCNF is the advance version of 3NF. It is stricter than 3NF.
+    - A table is in BCNF if every functional dependency X → Y, X is the super key of the table.
+    - For BCNF, the table should be in 3NF, and for every FD, LHS is super key.
+
+        ![Alt text](image-5.png)
+        ![Alt text](image-6.png)
+        ![Alt text](image-7.png)
+
 
 ### Data Security
 - Security of databases refers to the array of controls, tools, and procedures designed to ensure and safeguard confidentiality, integrity, and accessibility. This tutorial will concentrate on confidentiality because it's a component that is most at risk in data security breaches.
