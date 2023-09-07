@@ -263,12 +263,12 @@
     - In the second normal form, all non-key attributes are fully functional dependent on the primary key
     - Ex -Let's assume, a school can store the data of teachers and the subjects they teach. In a school, a teacher can teach more than one subject.
 
-        ![Alt text](image-1.png)
+        ![Alt text](./ref-2/image-1.png)
     
     - In the given table, non-prime attribute TEACHER_AGE is dependent on TEACHER_ID which is a proper subset of a candidate key. That's why it violates the rule for 2NF.
     - To convert the given table into 2NF, we decompose it into two tables:
 
-        ![Alt text](image-2.png)
+        ![Alt text](./ref-2/image-2.png)
 
     #### Third Normal Form(3NF)
     - A relation will be in 3NF if it is in 2NF and not contain any transitive partial dependency.
@@ -280,18 +280,18 @@
         - Y is a prime attribute, i.e., each element of Y is part of some candidate key.
   
 
-            ![Alt text](image-3.png)
+            ![Alt text](./ref-2/image-3.png)
 
-            ![Alt text](image-4.png)
+            ![Alt text](./ref-2/image-4.png)
 
     #### Boyce-Codd Normal Form (BCNF)
     - BCNF is the advance version of 3NF. It is stricter than 3NF.
     - A table is in BCNF if every functional dependency X → Y, X is the super key of the table.
     - For BCNF, the table should be in 3NF, and for every FD, LHS is super key.
 
-        ![Alt text](image-5.png)
-        ![Alt text](image-6.png)
-        ![Alt text](image-7.png)
+        ![Alt text](./ref-2/image-5.png)
+        ![Alt text](./ref-2/image-6.png)
+        ![Alt text](./ref-2/image-7.png)
 
 
 ### Data Security
