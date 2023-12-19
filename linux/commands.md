@@ -283,3 +283,112 @@ chown -c username:groupname filename/directory # report only if changes are made
 chgrp developers file.txt # changes the group ownership of file.txt to the group developers
 chgrp -c <groupname> <file/directory> # it will display a confirmation message after changing the group ownership.
 ```
+
+
+
+### Monitor Users
+```bash
+who # displays information about currently logged-in users
+last # shows a list of last logged in users with login times and other details 
+w # provides a summary of the current activity, including logged-in users and their processes.
+id # displays user and group information, including user ID (UID) and group ID (GID).
+```
+
+
+### System Utility Commands
+```bash
+date # this command is used to display the current date and time on the system.
+uptime # this command provides information about how long the system has been running, the number of users currently logged in, and the system load averages
+hostname # this command returns the hostname of the system, which is the name associated with the machine on a network
+uname -a # this command provides detailed information about the system, including the kernel name, network node hostname, kernel release, kernel version, machine hardware, and operating system.
+which ls # this command is used to locate the executable file associated with the given command. In this case, it will show the path to the ls command, which is used to list files and directories in a directory.
+cal # this command displays a simple calendar for the current month.
+echo # the echo command is used to display messages or values in the terminal. It is often used for printing text or displaying the values of variables in shell scripts.
+```
+
+### Process Management & System Monitoring Commands
+```bash
+ps aux # it is used to display information about all running processes. 
+bg %1 # this command is used to move a background job to the foreground. The %1 refers to job number 1.
+fg %1 #  this command is used to bring a background job to the foreground. Again, %1 refers to job number 1
+nice -n 10 command # the nice command is used to start a new process with a specified niceness value, which affects the scheduling priority of the process. A lower niceness value means a higher priority. In this case, nice -n 10 command starts the command with a niceness value of 10.
+
+ex:-
+nice -n 10 ls
+```
+
+### User Account Management
+```bash
+sudo useradd username # this command creates a new user account named "newuser."
+cut -d: -f1 /etc/passwd # to get all the current users
+
+sudo groupadd groupname # this command creates a new group named "newgroup."
+sudo usermod -aG groupname username # this command adds the user "newuser" to the group "newgroup."
+sudo userdel username # this command deletes the user account "existinguser."
+sudo groupdel groupname # this command deletes the group "existing group"
+
+
+su - username # the su command is used to switch to another user.
+su - # ff you use su - without specifying a username, it switches to the root user.
+sudo command # the sudo command is used to execute commands with elevated privileges.
+sudo -i # the sudo -i command opens a new shell with elevated privileges, similar to logging in as the root user.
+sudo ls /root # this command uses sudo to run the ls command with elevated privileges to list the contents of the /root directory.
+
+
+# ex:-
+sudo useradd john
+sudo usermod -aG developers john
+sudo userdel john
+su -
+sudo apt-get update
+```
+### grep
+```bash
+grep "pattern" filename # basic search
+grep -i "pattern" filename # case-insensitive search
+grep -r "pattern" directory # recursive search
+grep -n "pattern" filename # display line number
+grep -v "pattern" filename # invert match
+grep -c "pattern" filename # count number of matches
+grep -w "word" filename # search for whole word
+
+command | grep "pattern" # search for a pattern from command cutput
+
+ex:-
+ps aux | grep "firefox" # this command lists all running processes using ps aux and then searches for lines containing the word "firefox" using grep.
+```
+
+### awk
+```bash
+awk '{print $1, $3}' data.txt # print specific columns from a file
+awk '{sum += $1} END {print "Average:", sum/NR}' numbers.txt # calculate and print the avg
+awk '/error/ {print}' logfile.txt # print lines matching an pattern
+awk '{if ($3 > 50) print "High:", $1; else print "Low:", $1}' data.txt # conditional action
+awk '{print "Number of fields:", NF}' file.txt # print number of fields in each line
+awk '!seen[$2]++ {print $2}' names.txt # print unique entries in a column
+
+```
+
+### sed
+```bash
+sed 's/old_pattern/new_pattern/' filename # search and replace
+sed 's/old_pattern/new_pattern/g' filename # global search
+sed -i 's/old_pattern/new_pattern/g' filename # in-place editing
+sed '/pattern/d' filename # delete lines matching an pattern
+sed -n '5,10p' filename # print specific line
+sed '/pattern/i\New text to insert' filename # insert text before an line
+sed '/pattern/a\New text to append' filename # append text after an line
+sed -n -e '/pattern/=' -e 'p' filename # print line numbers
+```
+
+
+### cut
+```bash
+cut -c 1-5 filename # cut characters from 1-5
+cut -d ',' -f 1,3 filename.csv # this command extracts the first and third fields from each line of a CSV file where fields are separated by commas.
+cut -d ' ' --complement -f 1 filename # this command extracts all fields except the first from each line of a space-separated file.
+cut -c 1-5,8-12 filename # this command extracts characters 1 through 5 and 8 through 12 from each line.
+ps aux | cut -c 1-20,30-40 # this command extracts specific character ranges from the output of the ps aux command.
+cut -f 2,4 filename.tsv # this command extracts the second and fourth fields from each line of a tab-separated values (TSV) file.
+cut -d ':' --complement -f 1,7 /etc/passwd # this command extracts all fields except the first and seventh from each line of the /etc/passwd file, using a colon as the delimiter.
+```
