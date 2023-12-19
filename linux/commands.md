@@ -392,3 +392,13 @@ ps aux | cut -c 1-20,30-40 # this command extracts specific character ranges fro
 cut -f 2,4 filename.tsv # this command extracts the second and fourth fields from each line of a tab-separated values (TSV) file.
 cut -d ':' --complement -f 1,7 /etc/passwd # this command extracts all fields except the first and seventh from each line of the /etc/passwd file, using a colon as the delimiter.
 ```
+
+### troubleshooting
+```bash
+ifconfig # this command displays the configuration details of all network interfaces on your system.
+ping www.example.com # ping is used to test the reachability of a host on an Internet Protocol (IP) network. It sends ICMP echo request packets and waits for the corresponding echo reply.
+traceroute www.example.com # traceroute (or traceroute in some systems) is used to trace the route that packets take from your computer to a destination host. It shows the IP addresses of intermediate routers along the path.
+nslookup www.example.com # this command looks up the IP address associated with the domain name www.example.com using DNS.
+dig www.example.com # this command retrieves detailed DNS information for the domain www.example.com, including IP addresses, name servers, and more.
+netstat -an # this command shows a list of all open network connections and listening ports.
+```
