@@ -6,6 +6,10 @@ ls -a # list all files in current directory including hidden files
 ls -l # list detailed information about files in current directory
 ls -la # combination of ls -a and ls -l
 ls -l --author # list all files in current directory with author deatils
+ls -t # sort by modification time, newest first.
+ls -s # sort by file size
+ls -r # reverse the order
+ls -R # list subdirectories recursively         
 ```
 
 ### cd
@@ -42,6 +46,7 @@ cat file1.txt file2.txt # display the content after concatenate the both files(i
 cat file1.txt file2.txt > file3.txt # it concatenates the two files then store their results in file3.txt
 cat >> file1.txt # append the new content
 cat -n filename # number all output lines
+cat -b filename # number non-empty output lines
 cat -A filename # display non-printing characters and line endings
 cat -s filename # squeeze multiple blank lines
 cat -E filename # show ends of each lines
@@ -53,6 +58,8 @@ cat -E filename # show ends of each lines
 cp source_file destination # copy a file to a different location
 cp file1 file2 file3 destination_directory # copy multiple files to a directory
 cp -r source_directory destination_directory # copy a directory and its contents recursively
+cp -i source_file destination # prompt before overwriting an existing file
+cp -u source_file destination # copy only when the source file is newer than the destination file or when the destination file is missing.
 cp --copy-contents source_directory destination_directory # copy the contents of a directory recursively
 ```
 
@@ -351,6 +358,7 @@ grep -n "pattern" filename # display line number
 grep -v "pattern" filename # invert match
 grep -c "pattern" filename # count number of matches
 grep -w "word" filename # search for whole word
+grep -o # show only matching part of the line
 
 command | grep "pattern" # search for a pattern from command cutput
 
@@ -367,6 +375,8 @@ awk '{if ($3 > 50) print "High:", $1; else print "Low:", $1}' data.txt # conditi
 awk '{print "Number of fields:", NF}' file.txt # print number of fields in each line
 awk '!seen[$2]++ {print $2}' names.txt # print unique entries in a column
 
+awk '{print $NF}' filename # print last field of each line
+awk '{print NF}' filename # print the total number of fields in each line
 ```
 
 ### sed
@@ -401,4 +411,201 @@ traceroute www.example.com # traceroute (or traceroute in some systems) is used 
 nslookup www.example.com # this command looks up the IP address associated with the domain name www.example.com using DNS.
 dig www.example.com # this command retrieves detailed DNS information for the domain www.example.com, including IP addresses, name servers, and more.
 netstat -an # this command shows a list of all open network connections and listening ports.
+```
+
+
+### Misc - mcqs
+
+```bash
+
+#### PS
+
+ps -a # shows information about all processes associated with any terminal.
+ps -e # displays information about every process on the system.
+ps -aux # displays a detailed list of all processes, including those of other users.
+ps -u username # the ps -u command is used to display information about processes based on user ownership
+ps -f # the ps -f command is used to display a full-format listing of processes on unix-like operating systems. the -f option stands for "full" and provides detailed information about each process in a column-based format
+
+ps -p 1234 # the ps -p command is used to display information about specific processes based on their process IDs (PIDs).
+
+#### IFCONFIG
+
+ifconfig            # Display information about all active network interfaces
+ifconfig -a         # Display information about all network interfaces, including inactive ones
+ifconfig eth0       # Display information about a specific network interface (e.g., eth0)
+ifconfig eth0 up    # Enable a network interface (bring it up)
+ifconfig eth0 down  # Disable a network interface (bring it down)
+ifconfig eth0 192.168.1.2 netmask 255.255.255.0  # Set the IP address and netmask for an interface
+ifconfig eth0 promisc  # Enable promiscuous mode for a network interface
+ifconfig eth0 mtu 1500  # Set the Maximum Transmission Unit (MTU) for a network interface
+ifconfig eth0 hw ether 00:11:22:33:44:55  # Set the hardware (MAC) address for an interface
+ifconfig lo         # Display information about the loopback interface
+
+ifconfig -s # the ifconfig -s command is used to display a short summary of network interface information.
+
+
+#### PING
+
+ping example.com               # Send ICMP Echo Request packets to a host (default count is 4)
+ping -c 10 example.com         # Specify the number of packets to send
+ping -i 2 example.com          # Set the time interval between sending packets in seconds
+ping -s 100 example.com        # Set the packet size in bytes
+ping -t 5 example.com          # Set a timeout for each packet in seconds
+ping -w 10 example.com         # Set a deadline for the entire ping operation in seconds
+ping -q example.com            # Quiet mode, only display summary statistics
+ping -v example.com            # Verbose mode, show detailed information about each packet
+ping -n example.com            # Numeric output, display IP addresses instead of hostnames
+ping -R example.com            # Record route, display the route packets take to the destination
+ping -c 4 -i 1 example.com     # Combine options to send 4 packets with a 1-second interval
+ping -4 example.com            # Use IPv4
+ping -6 example.com            # Use IPv6
+ping -h                        # Display help and information about available options
+
+
+#### TRACEROUTE
+
+traceroute example.com          # Trace the route to a destination host
+traceroute -n example.com       # Do not resolve hostnames to IP addresses
+traceroute -4 example.com       # Use IPv4
+traceroute -6 example.com       # Use IPv6
+traceroute -m 30 example.com    # Set the maximum number of hops to 30
+traceroute -p 80 example.com    # Use a specific destination port (e.g., port 80)
+traceroute -q 3 example.com     # Set the number of probes per hop to 3
+traceroute -t 2 example.com     # Set the ICMP time-to-live (TTL) for the first hop to 2
+traceroute -I example.com       # Use ICMP Echo Request instead of UDP packets
+traceroute -U example.com       # Use UDP packets instead of ICMP Echo Request
+traceroute -w 2 example.com     # Set the timeout in seconds for each probe to 2
+traceroute -A example.com       # Enable AS (Autonomous System) path lookup
+traceroute -g gateway example.com  # Specify a loose source route through a gateway
+traceroute -H 2 example.com     # Use IPv4 with the specified hop limit of 2
+traceroute -m 30 -q 3 example.com  # Combine options to set max hops and probes per hop
+traceroute -h                   # Display help and information about available options
+
+
+#### SORT
+
+sort filename                   # Sort the contents of a file (default: lexicographic order)
+sort -r filename                # Reverse the order of sorting (descending order)
+sort -n filename                # Numerical sort (compare according to string numerical value)
+sort -k 2,2 filename            # Sort based on the second field (column)
+sort -t ':' -k 3,3 filename     # Specify a field separator (e.g., colon) and sort based on the third field
+sort -u filename                # Unique sort (remove duplicate lines)
+sort -c filename                # Check if the file is already sorted; no output if sorted
+sort -o outputfile filename     # Write the sorted output to a new file
+sort -M filename                # Sort by month name (e.g., Jan, Feb)
+sort -b filename                # Ignore leading blanks in each field
+sort -f filename                # Case-insensitive sort
+sort -V filename                # Version sort (natural sort of version numbers)
+sort -R filename                # Random sort
+sort -h filename                # Human-readable numbers sort (e.g., 1K, 2M)
+sort --parallel=4 filename      # Use multiple threads for sorting (adjust the number as needed)
+sort -k 2,2n filename           # Sort based on the second field numerically
+sort -z filename                # Treat NULL-terminated lines as records
+sort --help                     # Display help and information about available options
+
+
+#### UNIQ
+
+uniq filename                   # Display unique lines from a sorted file
+uniq -c filename                # Display unique lines with a count of occurrences
+uniq -d filename                # Display only duplicate lines
+uniq -u filename                # Display only unique lines
+uniq -i filename                # Case-insensitive comparison
+uniq -f N filename              # Ignore the first N fields (columns)
+uniq -s N filename              # Skip the first N characters in each line before checking for uniqueness
+uniq -w N filename              # Compare only the first N characters in each line
+uniq -z filename                # Treat lines as zero-terminated (null-terminated) strings
+uniq --check-fields=N filename  # Check for uniqueness based on N fields
+uniq --skip-chars=N filename    # Skip the first N characters in each line before checking for uniqueness
+uniq --version                  # Display version information
+uniq --help                     # Display help and information about available options
+
+
+#### WC
+
+wc filename              # Display the number of lines, words, and characters in a file
+wc -l filename           # Display the number of lines in a file
+wc -w filename           # Display the number of words in a file
+wc -c filename           # Display the number of characters in a file
+wc -m filename           # Display the number of characters in a file (same as -c)
+wc -L filename           # Display the length of the longest line in a file
+wc -lw filename          # Display the number of lines and words in a file
+wc -lcw filename         # Display the number of lines, characters, and words in a file
+wc --lines filename      # Display the number of lines in a file
+wc --words filename      # Display the number of words in a file
+wc --bytes filename      # Display the number of bytes in a file (same as -c)
+wc --max-line-length filename  # Display the length of the longest 
+
+
+
+### TAR
+
+# Create a tar archive
+tar -cvf archive.tar file1 file2 directory1
+
+# Extract files from a tar archive
+tar -xvf archive.tar
+
+# Extract files to a specific directory
+tar -xvf archive.tar -C /path/to/directory
+
+# Create a compressed tar archive (gzip)
+tar -cvzf archive.tar.gz file1 file2 directory1
+
+# Create a compressed tar archive (bzip2)
+tar -cvjf archive.tar.bz2 file1 file2 directory1
+
+# Extract files from a compressed tar archive (gzip)
+tar -xzvf archive.tar.gz
+
+# Extract files from a compressed tar archive (bzip2)
+tar -xjvf archive.tar.bz2
+
+# List the contents of a tar archive
+tar -tvf archive.tar
+
+# Append files to an existing tar archive
+tar -rvf archive.tar newfile
+
+# Update files in an existing tar archive
+tar -uvf archive.tar updatedfile
+
+# Remove a file from a tar archive
+tar --delete -f archive.tar file1
+
+# Extract specific files from a tar archive
+tar -xvf archive.tar file1 file2
+
+# Create an incremental backup
+tar --create --file=backup.tar --listed-incremental=backup.snar /path/to/directory
+
+# Extract from an incremental backup
+tar --extract --file=backup.tar --listed-incremental=backup.snar
+
+
+### GZIP
+
+# Compress a file
+gzip filename
+# Keep the original file (don't replace with compressed file)
+gzip -c filename > compressedfile.gz
+# Decompress a compressed file
+gzip -d compressedfile.gz
+# Keep the original compressed file (don't delete after decompression)
+gzip -dk compressedfile.gz
+# Compress multiple files simultaneously
+gzip file1 file2 file3
+# Compress a file and display compression statistics
+gzip -v filename
+# Force compression even if the compressed file already exists
+gzip -f filename
+# Specify compression level (1 to 9, where 9 is the highest compression)
+gzip -9 filename
+# Keep the original file timestamp
+gzip -n filename
+# Display help and information about available options
+gzip --help
+
+
+
 ```
