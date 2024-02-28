@@ -541,44 +541,31 @@ wc --max-line-length filename  # Display the length of the longest
 ### TAR
 
 # Create a tar archive
-tar -cvf archive.tar file1 file2 directory1
-
+tar -cvf archive.tar file1 file2 directory1     
 # Extract files from a tar archive
 tar -xvf archive.tar
-
 # Extract files to a specific directory
 tar -xvf archive.tar -C /path/to/directory
-
 # Create a compressed tar archive (gzip)
 tar -cvzf archive.tar.gz file1 file2 directory1
-
 # Create a compressed tar archive (bzip2)
 tar -cvjf archive.tar.bz2 file1 file2 directory1
-
 # Extract files from a compressed tar archive (gzip)
 tar -xzvf archive.tar.gz
-
 # Extract files from a compressed tar archive (bzip2)
 tar -xjvf archive.tar.bz2
-
 # List the contents of a tar archive
 tar -tvf archive.tar
-
 # Append files to an existing tar archive
 tar -rvf archive.tar newfile
-
 # Update files in an existing tar archive
 tar -uvf archive.tar updatedfile
-
 # Remove a file from a tar archive
 tar --delete -f archive.tar file1
-
 # Extract specific files from a tar archive
 tar -xvf archive.tar file1 file2
-
 # Create an incremental backup
 tar --create --file=backup.tar --listed-incremental=backup.snar /path/to/directory
-
 # Extract from an incremental backup
 tar --extract --file=backup.tar --listed-incremental=backup.snar
 
@@ -607,5 +594,66 @@ gzip -n filename
 gzip --help
 
 
+```
+
+
+### APACHE/NGINX/MYSQl/PSQL
+
+```bash
+
+# installing
+sudo apt-get update
+sudo apt-get install apache2
+
+sudo apt-get update
+sudo apt-get install nginx
+
+sudo apt-get update
+sudo apt-get install mysql-server
+
+sudo apt-get update
+sudo apt-get install postgresql postgresql-contrib
+
+sudo service postgresql start
+sudo service postgresql stop
+sudo service postgresql restart
+
+
+
+# start/stop/re-start
+sudo service apache2 start
+sudo service apache2 stop
+sudo service apache2 restart
+
+sudo service nginx start
+sudo service nginx stop
+sudo service nginx restart
+
+sudo service mysql start
+sudo service mysql stop
+sudo service mysql restart
+
+
+
+
+# Configuration Files:
+# Main Configuration: /etc/apache2/apache2.conf
+# Site Configuration: /etc/apache2/sites-available/
+
+# Main Configuration: /etc/nginx/nginx.conf
+# Site Configuration: /etc/nginx/sites-available/
+
+
+
+# interactive shell
+mysql -u username -p
+sudo -u postgres psql
+
+
+
+
+# default ports
+# mysql - 3306
+# psql - 5432
 
 ```

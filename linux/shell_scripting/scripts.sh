@@ -132,3 +132,48 @@ echo $?
 
 
 # echo $[(5+4)] #9
+
+
+#!/bin/bash
+
+
+# switch case 
+# read -p "Enter a value: " input
+
+# case $input in
+#   "apple")
+#     echo "You selected apple."
+#     ;;
+#   "banana")
+#     echo "You selected banana."
+#     ;;
+#   "cherry")
+#     echo "You selected cherry."
+#     ;;
+#   *)
+#     echo "Invalid selection."
+#     ;;
+# esac
+
+
+# echo "Hello $1"
+
+/*
+ihug
+*/
+
+# a=8
+# b=8
+
+# if  [ $a -eq $b ]
+# then
+#     echo "a is equal to b"
+# elif [ $a -gt $b ]
+# then
+#     echo "a is greater than b"
+# elif [ $a -lt $b ]
+# then
+#     echo "a is less than b"
+# else
+#     echo "None of the condition met"
+# fi

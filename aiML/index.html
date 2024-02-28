@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        height: 100vh;
+        width: 100vw;
+        margin: 0;
+        overflow: hidden; 
+        animation: gradientAnimation 2s infinite linear;
+      }
+      @keyframes gradientAnimation {
+        0% {
+          background: linear-gradient(
+            45deg,
+            red,
+            orange,
+            yellow
+          ); 
+        }
+        50% {
+          background: linear-gradient(
+            45deg,
+            orange,
+            red,
+            yellow
+          ); 
+        }
+        100% {
+          background: linear-gradient(
+            45deg,
+            red,
+            yellow
+            orange,
+          ); 
+        }
+      }
+    </style>
+  </head>
+  <body>
+
+  </body>
+</html>

@@ -1,0 +1,32 @@
+{
+    "name": "John Doe",
+    "age": 25,
+    "email": "johndoe@example.com",
+    "address": {
+        "street": "123 Main St",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10001"
+    },
+    "interests": ["programming", "reading", "traveling"],
+    "education": {
+        "degree": "Bachelor of Science",
+        "major": "Computer Science",
+        "university": "ABC University",
+        "graduationYear": 2022
+    },
+    "workExperience": [
+        {
+            "company": "XYZ Corp",
+            "position": "Software Engineer",
+            "startDate": "2022-01-01",
+            "endDate": "2023-01-01"
+        },
+        {
+            "company": "ABC Inc",
+            "position": "Intern",
+            "startDate": "2021-06-01",
+            "endDate": "2021-12-31"
+        }
+    ]
+}
